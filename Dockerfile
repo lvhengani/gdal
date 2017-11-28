@@ -1,20 +1,29 @@
 #
-# A general purpose container with gdal/ogr, numpy/scipy and pycopg2
+# A general purpose container with pip, dal/ogr, numpy/scipy and pycopg2
 #
 FROM ubuntu:latest
 
 LABEL maintainer "Lufuno vhengani <lvhengani@csir.co.za>"
 
 ENV DEBIAN_FRONTEND noneinteractive
-
+RUN sed 's/main$/main universe multiverse/' -i /etc/apt/sources.list
 RUN apt-get update && \
     apt-get -y upgrade && \
     apt-get install -y \
-        gdal-bin \
-        libgdal-dev \
-        python-gdal \
+        build-essential \
+        python \
+        python-dev \
+        python-distribute \
+        python-pip \
+        software-properties-common \
+        libcurl4-openssl-dev \  
         python-numpy \
         python-scipy \ 
         curl \
         wget \
-        python-psycopg2
+        python-psycopg2 && \
+    add-apt-repository ppa:ubuntugis/ubuntugis-unstable && \  
+    apt-get install -y \    
+        gdal-bin \
+        libgdal-dev \
+        python-gdal \
