@@ -22,6 +22,7 @@ RUN apt-get update && \
         curl \
         wget \
         python-psycopg2 && \
+    pip install --upgrade pip && \    
     add-apt-repository ppa:ubuntugis/ubuntugis-unstable && \  
     apt-get install -y \    
         gdal-bin \
