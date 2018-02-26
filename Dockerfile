@@ -7,11 +7,8 @@ LABEL maintainer "Lufuno vhengani <lvhengani@csir.co.za>"
 
 ENV DEBIAN_FRONTEND noneinteractive
 RUN sed 's/main$/main universe multiverse/' -i /etc/apt/sources.list
-RUN apt-get update && \
-    apt-get -y upgrade && \
-    apt-get install -y \
+RUN apt-get update && apt-get install -y \
         build-essential \
-        python \
         python-dev \
         python-distribute \
         python-pip \
@@ -24,10 +21,7 @@ RUN apt-get update && \
         python-psycopg2 && \
     pip install --upgrade pip && \    
     add-apt-repository ppa:ubuntugis/ubuntugis-unstable && \ 
-    apt-get update && \
-    apt-get -y upgrade && \
-    apt-get -y dist-upgrade && \ 
-    apt-get install -y \    
+    apt-get update && apt-get install -y \    
         gdal-bin \
         libgdal-dev \
         python-gdal && \
